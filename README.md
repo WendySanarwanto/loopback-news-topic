@@ -1,7 +1,7 @@
 # loopback-news-topic
 REST API endpoints, built on Loopback.io framework which provide News &amp; Topic management services.
 
-## How to run this REST API application in local machine
+## How to run the Application in Local Machine
 
 * Ensure that you have installed these software in your local machine:
     * [Docker](https://docs.docker.com/install/)
