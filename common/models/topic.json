@@ -13,7 +13,8 @@
     },
     "thumbnailUrl": {
       "type": "string",
-      "required": false
+      "required": false,
+      "description": "URL of small picture that can be displayed as background of this topic's widget."
     }
   },
   "validations": [],

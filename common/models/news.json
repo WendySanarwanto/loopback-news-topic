@@ -13,15 +13,23 @@
     },
     "content": {
       "type": "string",
-      "required": true
+      "required": true,
+      "description": "Content of this news. You could put HTML content in here."
     },
     "author": {
       "type": "string",
-      "required": true
+      "required": true,
+      "description": "Author of this News. E.g. Wendy Sanarwanto <wendy.sanarwanto@gmail.com>"
     },
     "publishDate": {
       "type": "date",
       "required": true
+    },
+    "status": {
+      "type": "string",
+      "required": true,
+      "default": "draft",
+      "description": "Status of this news. Allowed status are `draft`, `deleted`, `publish`"
     }
   },
   "validations": [],
