@@ -35,5 +35,22 @@
   "Role": {
     "dataSource": "db",
     "public": false
+  },
+  "News": {
+    "dataSource": "db",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "createChangeStream": false,
+          "upsertWithWhere": false,
+          "replaceOrCreate": false,
+          "exists": false,
+          "updateAll": false,
+          "count": false,
+          "findOne": false
+        }
+      }
+    }
   }
 }
