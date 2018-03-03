@@ -1,6 +1,12 @@
 {
-  "db": {
-    "name": "db",
-    "connector": "memory"
+  "newstopicDs": {
+    "host": "localhost",
+    "port": 27017,
+    "url": "",
+    "database": "newstopic",
+    "password": "",
+    "name": "newstopicDs",
+    "user": "",
+    "connector": "mongodb"
   }
 }

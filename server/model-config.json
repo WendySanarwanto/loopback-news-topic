@@ -14,30 +14,30 @@
     ]
   },
   "User": {
-    "dataSource": "db",
+    "dataSource": "newstopicDs",
     "public": false
   },
   "AccessToken": {
-    "dataSource": "db",
+    "dataSource": "newstopicDs",
     "public": false
   },
   "ACL": {
-    "dataSource": "db",
+    "dataSource": "newstopicDs",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "db",
+    "dataSource": "newstopicDs",
     "public": false,
     "options": {
       "strictObjectIDCoercion": true
     }
   },
   "Role": {
-    "dataSource": "db",
+    "dataSource": "newstopicDs",
     "public": false
   },
   "News": {
-    "dataSource": "db",
+    "dataSource": "newstopicDs",
     "public": true,
     "options": {
       "remoting": {
@@ -54,7 +54,7 @@
     }
   },
   "Topic": {
-    "dataSource": "db",
+    "dataSource": "newstopicDs",
     "public": true,
     "options": {
       "remoting": {
