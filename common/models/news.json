@@ -25,7 +25,12 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "topics": {
+      "type": "hasAndBelongsToMany",
+      "model": "Topic"
+    }
+  },
   "acls": [],
   "methods": {}
 }

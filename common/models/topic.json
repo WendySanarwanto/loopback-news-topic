@@ -17,7 +17,12 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "news": {
+      "type": "hasAndBelongsToMany",
+      "model": "News"
+    }
+  },
   "acls": [],
   "methods": {}
 }
