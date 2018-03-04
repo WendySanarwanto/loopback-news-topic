@@ -41,7 +41,7 @@ We placed all of test files in the `test` directory. These test files are explai
 
 * Open a terminal window, change directory to the location of this application and start the application through running `npm run start` command.
 
-* Open another terimnal window, and stay inside this application's directory and start the functional testing through running `npm run test` command.
+* Open another terminal window, and stay inside this application's directory and start the functional testing through running `npm run test` command.
 
 ### 2.3. How to run functional test against Application hosted on remote machine
 **TBD**
