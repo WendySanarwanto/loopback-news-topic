@@ -8,11 +8,12 @@
   "scripts": {
     "lint": "eslint .",
     "start": "node .",
-    "posttest": "npm run lint && nsp check",
+    "check": "nsp check",
     "mongodb": "docker run --name mongodb -d -p 27017:27017 mongo:3.7.2-jessie",
     "mongodb:start": "docker start mongodb",
     "mongodb:stop": "docker stop mongodb",
-    "mongodb:purge": "npm run mongodb:stop && docker rm mongodb"
+    "mongodb:purge": "npm run mongodb:stop && docker rm mongodb",
+    "test": "mocha ./test/functional/**.spec.js"
   },
   "dependencies": {
     "compression": "^1.0.3",
@@ -28,7 +29,10 @@
   "devDependencies": {
     "eslint": "^3.17.1",
     "eslint-config-loopback": "^8.0.0",
-    "nsp": "^2.1.0"
+    "mocha": "^5.0.1",
+    "nsp": "^2.1.0",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
   },
   "repository": {
     "type": "",
