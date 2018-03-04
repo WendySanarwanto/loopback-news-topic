@@ -2,6 +2,7 @@
 
 const assert = require('assert');
 const rp = require('request-promise');
+const doApiRequest = require(`../lib/test-utility`).doApiRequest;
 
 // TODO: Figure out a way to parameterise this
 const API_HOST_URL = 'http://localhost:3000/api';
@@ -9,27 +10,6 @@ const NEWS_API_PATH = '/News';
 
 describe('News API', () => {
   const newsIdsToCleanup = [];
-
-  /**
-   * A helper for sending REST API Request.
-   * @param {*} apiUrl The API Endpoint's URL.
-   * @param {*} method The HTTP Request's method (e.g. POST, GET, DELETE, PUT).
-   * @param {*} payload The request payload in JSON object.
-   */
-  function doApiRequest(apiUrl, method, payload) {
-    const body = payload;
-    const options = {
-      method: method,
-      uri: apiUrl,
-      json: true
-    };
-
-    if (payload) {
-      options.body = body;
-    }
-
-    return rp(options);
-  }
 
   /**
    * A helper for cleaning up queued test data.
