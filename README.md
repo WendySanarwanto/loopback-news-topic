@@ -5,7 +5,7 @@ REST API endpoints, built on Loopback.io framework which provide News &amp; Topi
 
 * Ensure that you have installed these software in your local machine:
     * [Docker](https://docs.docker.com/install/)
-    * [Node.js](https://nodejs.org/en/)
+    * [Node.js](https://nodejs.org/en/)  version 9.7.1 or version 8.9.4 LTS.
     * [Git client](https://git-scm.com/downloads)
 
 * Open a Command Line Interface (CLI) terminal, and clone this repository through running `git clone https://github.com/WendySanarwanto/loopback-news-topic.git` command.
