@@ -35,10 +35,9 @@ describe('News API', () => {
    * A helper for cleaning up queued test data.
    */
   async function cleanupNewsRecords() {
-    let apiUrl = `${API_HOST_URL}${NEWS_API_PATH}`;
     while(newsIdsToCleanup.length > 0) {
       const id = newsIdsToCleanup.pop();
-      apiUrl = `${apiUrl}/${id}`;
+      let apiUrl = `${API_HOST_URL}${NEWS_API_PATH}/${id}`;      
       await doApiRequest(apiUrl, 'DELETE');
     }
   }
@@ -57,6 +56,46 @@ describe('News API', () => {
     const createNewsApiUrl = `${API_HOST_URL}${NEWS_API_PATH}`;
     const existingNews = await doApiRequest(createNewsApiUrl, 'POST', payload);
     newsIdsToCleanup.push(existingNews.id);
+    return existingNews;
+  }
+
+  /**
+   * A helper for creating a number of News records.
+   */
+  async function createNewsTestRecords() {
+    const payload = [{
+      "title": "Draft Article 1",
+      "content": "<p> This is the content of Article 1. </p>",
+      "author": "Wendy Sanarwanto <wendy.sanarwanto@gmail.com>",
+      "status": "draft",
+      "publishDate": "2018-03-03T04:28:07.444Z"
+    }, {
+      "title": "Draft Article 2",
+      "content": "<p> This is the content of Article 2. </p>",
+      "author": "Wendy Sanarwanto <wendy.sanarwanto@gmail.com>",
+      "status": "draft",
+      "publishDate": "2018-03-03T04:28:07.444Z"
+    }, {
+      "title": "Published Article 3",
+      "content": "<p> This is the content of Article 3. </p>",
+      "author": "Lisa Huang <lisa.huang@gmail.com>",
+      "status": "publish",
+      "publishDate": "2018-03-03T04:28:07.444Z"
+    }, {
+      "title": "Published Article 4",
+      "content": "<p> This is the content of Article 4. </p>",
+      "author": "Diana Prince <diana.prince@gmail.com>",
+      "status": "publish",
+      "publishDate": "2018-03-03T04:28:07.444Z"
+    }];
+
+    const createNewsApiUrl = `${API_HOST_URL}${NEWS_API_PATH}`;
+    const existingNews = await doApiRequest(createNewsApiUrl, 'POST', payload);
+    
+    for(const news of existingNews) {
+      newsIdsToCleanup.push(news.id);
+    }
+
     return existingNews;
   }
 
@@ -152,4 +191,82 @@ describe('News API', () => {
     }
   });
   
+  it(`gets all existing 'News' records.`, async () => {
+    // Arrange
+    const newsTestRecords = await createNewsTestRecords();
+    const apiUrl = `${API_HOST_URL}${NEWS_API_PATH}`;
+
+    // Act
+    const response = await doApiRequest(apiUrl, "GET");
+
+    // Assert
+    assert.deepEqual(response, newsTestRecords);
+  });
+
+  it(`gets all existing 'News' records which has status equal to \`draft\``, async () => {
+    // Arrange
+    const newsTestRecords = await createNewsTestRecords();
+    const draftNews = newsTestRecords.filter(news => news.status === 'draft');
+    const apiUrl = `${API_HOST_URL}${NEWS_API_PATH}?[filter][where][status]=draft`;
+
+    // Act
+    const response = await doApiRequest(apiUrl, "GET");
+
+    // Assert
+    assert.deepEqual(response, draftNews);
+  });
+
+  it(`gets all existing 'News' records which has status equal to \`publish\``, async () => {
+    // Arrange
+    const newsTestRecords = await createNewsTestRecords();
+    const draftNews = newsTestRecords.filter(news => news.status === 'publish');
+    const apiUrl = `${API_HOST_URL}${NEWS_API_PATH}?[filter][where][status]=publish`;
+
+    // Act
+    const response = await doApiRequest(apiUrl, "GET");
+
+    // Assert
+    assert.deepEqual(response, draftNews);
+  });
+
+  it(`gets existing 'News' records which are authored by specific name`, async() => {
+    // Arrange
+    const newsTestRecords = await createNewsTestRecords();
+    const authorName = "Wendy Sanarwanto";
+    const draftNews = newsTestRecords.filter(news => news.author.includes(authorName));
+    const filterParams = `?[filter][where][author][like]=${authorName}`;
+    const apiUrl = `${API_HOST_URL}${NEWS_API_PATH}${filterParams}`;
+
+    // Act
+    const response = await doApiRequest(apiUrl, "GET");
+
+    // Assert
+    assert.deepEqual(response, draftNews);
+  });
+
+  it(`gets existing 'News' records which have title containing specific words. `, async () => {
+    // Arrange
+    const newsTestRecords = await createNewsTestRecords();
+    const draftNews = newsTestRecords.filter(news => news.title.includes('draft'));
+    const filterParams = `?[filter][where][title][like]=draft`;
+    const apiUrl = `${API_HOST_URL}${NEWS_API_PATH}${filterParams}`;
+
+    // Act
+    const response = await doApiRequest(apiUrl, "GET");
+
+    // Assert
+    assert.deepEqual(response, draftNews);
+  });
+
+  it(`gets a 'News' record by specified 'id'.`, async() => {
+    // Arrange
+    const newsRecord = await createNewsRecord();
+    const apiUrl = `${API_HOST_URL}${NEWS_API_PATH}/${newsRecord.id}`;
+
+    // Act
+    const response = await doApiRequest(apiUrl, "GET");
+
+    // Assert
+    assert.deepEqual(response, newsRecord);
+  });
 });

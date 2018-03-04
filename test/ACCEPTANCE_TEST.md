@@ -37,7 +37,7 @@ This document contains a list of acceptance test scenarios that are used as refe
 5. Get all existing `News` record.
 
         Given there are a number News records do exist in the system
-          And these News records have various status such as `draft`, `delete` & `publish`
+          And these News records have various status such as `draft` & `publish`
         When invoking `GET` /News API Endpoint
         Then calling the API returns 200 status 
           And the response contains an array of all of these existing News record(s). 
