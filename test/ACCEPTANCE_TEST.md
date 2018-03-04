@@ -140,7 +140,7 @@ This document contains a list of acceptance test scenarios that are used as refe
 
         Given is a `News` record with id='5a9ae2632599ac1c04086388'
           and the `News` record is associated to `Topics` with ids: `5a9ae2632599ac1c04086388` and `5a9aee3b2599ac1c0408638d`
-        When invoking `GET` `/News/5a9ae2632599ac1c04086388` API endpoint
+        When invoking `GET` `/News/5a9ae2632599ac1c04086388/topics` API endpoint
         Then calling the API returns 200 status 
           And the response body contains an array of these associated `Topics` by these ids: `5a9ae2632599ac1c04086388` and `5a9aee3b2599ac1c0408638d`
 
@@ -159,6 +159,6 @@ This document contains a list of acceptance test scenarios that are used as refe
 
         Given is a `Topic` record with id='5a9adb572599ac1c04086386'
           and the `Topic` record is associated to `News` with ids: `5a9ae2632599ac1c04086388` and `5a9aee3b2599ac1c0408638d`
-        When invoking `GET` `/Topics/5a9adb572599ac1c04086386` API endpoint
+        When invoking `GET` `/Topics/5a9adb572599ac1c04086386/News` API endpoint
         Then calling the API returns 200 status 
           And the response body contains an array of these associated `News` by these ids: `5a9ae2632599ac1c04086388` and `5a9aee3b2599ac1c0408638d`
