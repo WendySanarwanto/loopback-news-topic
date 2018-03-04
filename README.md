@@ -51,7 +51,7 @@ Below are several examples of how you could use the API within your application:
 
 * Display a list of published News
 
-        curl -X GET --header 'Accept: application/json' 'http://YOUR_API_HOST_URL/api/News'
+        curl -X GET --header 'Accept: application/json' 'http://YOUR_API_HOST_URL/api/News?filter={"where": {"status": "publish"}}'
 
 * Display a list of both published and draft News
 
@@ -59,7 +59,7 @@ Below are several examples of how you could use the API within your application:
 
 * Display a list of all Topics
 
-        curl -X GET --header 'Accept: application/json' 'http://YOUR_API_HOST_URL/api/Topics'
+        curl -X GET --header 'Accept: application/json' 'http://YOUR_API_HOST_URL/api/Topics' 
 
 * Display a list of all Topics associated to a News
 
