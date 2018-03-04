@@ -44,6 +44,23 @@ describe('News API', () => {
   }
 
   /**
+   * A helper for creating a News test data.
+   */
+  async function createNewsRecord() {
+    const payload = {
+      "title": "Article 1",
+      "content": "<p> This is the content of Article 1. </p>",
+      "author": "Wendy Sanarwanto <wendy.sanarwanto@gmail.com>",
+      "status": "draft",
+      "publishDate": "2018-03-03T04:28:07.444Z"
+    };
+    const createNewsApiUrl = `${API_HOST_URL}${NEWS_API_PATH}`;
+    const existingNews = await doApiRequest(createNewsApiUrl, 'POST', payload);
+    newsIdsToCleanup.push(existingNews.id);
+    return existingNews;
+  }
+
+  /**
    * Do cleaning up after each tests are executed.
    */
   afterEach(async () => {
@@ -82,17 +99,57 @@ describe('News API', () => {
       "title": "Article 1",
       "status": "draft",
     };
+    const failErrMessage = "Should returns error.";
 
     try {
       // Act
       await doApiRequest(apiUrl, 'POST', news);
-      assert.fail("Should returns error.");
+      assert.fail(failErrMessage);
     } catch (err) {
       // Assert
-      assert(err);
+      assert.notEqual(err.message, failErrMessage);
+      assert.ok(err);
       assert(err.error.error.statusCode, 422);
     }
   });
 
+  it(`updates an existing 'News' record's attributes by id`, async() => {
+    // Arrange
+    const existingNews = await createNewsRecord();
+    const existingNewsId = existingNews.id;
+
+    const updateApiUrl = `${API_HOST_URL}${NEWS_API_PATH}/${existingNewsId}`;
+    existingNews.title = "Article A";
+    existingNews.status = "publish";
+
+    // Act
+    const response = await doApiRequest(updateApiUrl, "PATCH", existingNews);
+
+    // Assert
+    assert.ok(response);
+    assert.equal(response.title, existingNews.title);
+    assert.equal(response.status, existingNews.status);
+  });
+
+  it(`gets error when attempting on updating an existing 'News' record's \`status\` to invalud value`, async() => {
+    // Arrange
+    const existingNews = await createNewsRecord();
+    const existingNewsId = existingNews.id;
+
+    const updateApiUrl = `${API_HOST_URL}${NEWS_API_PATH}/${existingNewsId}`;
+    existingNews.status = "updated";
+    const failErrMessage = `Updating a News record's status to invalid value should gets error.`;
+
+    try{
+      // Act
+      await doApiRequest(updateApiUrl, "PATCH", existingNews);
+      assert.fail(failErrMessage);
+    } catch(err) {
+      // Assert
+      assert.notEqual(err.message, failErrMessage);
+      assert.ok(err);
+      assert(err.error.error.statusCode, 400);
+    }
+  });
   
 });
