@@ -14,6 +14,6 @@ REST API endpoints, built on Loopback.io framework which provide News &amp; Topi
 
 * If your local machine has no MongoDb installed or running, start the mongodb container through running `npm run mongodb` command. To stop the mongodb container, you could run `npm run mongodb:stop` command to do this. Next time you want to run the MongoDB container, you could run `npm run mongodb:start` command, instead of running `npm run mongodb` command.
 
-* To Start the REST API backend application, run `npm run start` command.
+* To Start the REST API backend application, run `npm run start` command. Then, the Application runs on port 3000 and the API Endpoints are accessible on `/api` path. Example: `GET` `News` API endpoint is accessible on this url: http://localhost:3000/api/News
 
 * The backend application has Swagger API Documentation page that can be accessed for testing/playing around with the running API. To access the swagger page, open your browser then browse to http://localhost:3000/explorer. 
