@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "start": "node .",
     "check": "nsp check",
-    "mongodb": "docker run --name mongodb -d -p 27017:27017 mongo:3.7.2-jessie",
+    "mongodb": "docker run --name mongodb -d -p 127.0.0.1:27017:27017 mongo:3.7.2-jessie",
     "mongodb:start": "docker start mongodb",
     "mongodb:stop": "docker stop mongodb",
     "mongodb:purge": "npm run mongodb:stop && docker rm mongodb",
