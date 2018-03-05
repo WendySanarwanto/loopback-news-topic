@@ -1,0 +1,6 @@
+{
+  "User": {
+    "dataSource": "newstopicDs",
+    "public": true
+  }
+}
