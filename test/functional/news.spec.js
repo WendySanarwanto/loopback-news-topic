@@ -180,7 +180,9 @@ describe('News API', () => {
     const response = await doApiRequest(apiUrl, "GET");
 
     // Assert
-    assert.deepEqual(response, newsTestRecords);
+    for(const news of newsTestRecords) {
+      assert.ok(response.find(resp => resp.id === news.id) !== null);
+    }
   });
 
   it(`gets all existing 'News' records which has status equal to \`draft\``, async () => {
@@ -193,7 +195,9 @@ describe('News API', () => {
     const response = await doApiRequest(apiUrl, "GET");
 
     // Assert
-    assert.deepEqual(response, draftNews);
+    for(const news of draftNews) {
+      assert.ok(response.find(resp => resp.id === news.id) !== null);
+    }
   });
 
   it(`gets all existing 'News' records which has status equal to \`publish\``, async () => {
@@ -221,7 +225,10 @@ describe('News API', () => {
     const response = await doApiRequest(apiUrl, "GET");
 
     // Assert
-    assert.deepEqual(response, draftNews);
+    for(const news of draftNews){
+      assert.ok(response.find(resp => resp.id === news.id) !== null );
+    }
+    // assert.deepEqual(response, draftNews);
   });
 
   it(`gets existing 'News' records which have title containing specific words. `, async () => {
