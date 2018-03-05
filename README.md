@@ -43,9 +43,6 @@ We placed all of test files in the `test` directory. These test files are explai
 
 * Open another terminal window, stay inside this application's directory and then start the functional testing through running `npm run test` command.
 
-### 2.3. How to run functional test against Application hosted on remote machine
-**TBD**
-
 ## 3. Example usages of the API
 Below are several examples of how you could use the API within your application:
 
@@ -66,7 +63,3 @@ Below are several examples of how you could use the API within your application:
         curl -X GET --header 'Accept: application/json' 'http://YOUR_API_HOST_URL/api/News/5a9c07bcac899f22981588d7/topics'
 
 Rest of usage scnearios can be looked inside `test/ACCEPTANCE_TEST.md` document.
-
-## 4. Deployment to remote machine
-**TBD**
-
