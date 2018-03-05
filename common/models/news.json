@@ -28,8 +28,8 @@
     "status": {
       "type": "string",
       "required": true,
-      "default": "draft",
-      "description": "Status of this news. Allowed status are `draft`, `deleted`, `publish`"
+      "description": "Status of this news. Allowed status are `draft`, `deleted`, `publish`",
+      "default": "draft"
     }
   },
   "validations": [],
@@ -39,6 +39,13 @@
       "model": "Topic"
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "DENY"
+    }
+  ],
   "methods": {}
 }
